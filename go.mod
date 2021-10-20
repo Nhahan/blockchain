@@ -1,3 +1,3 @@
-module github.com/Nhanhan/blockchain
+module github.com/Nhahan/blockchain
 
 go 1.17
