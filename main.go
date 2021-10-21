@@ -4,12 +4,22 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"text/template"
 )
 
 const port string = ":4000"
 
+type homeData struct {
+	PageTitle string
+}
+
 func home(rw http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(rw, "Hello from home!")
+	tmpl, err := template.ParseFiles("templates/home.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	data := homeData{"Home"}
+	tmpl.Execute(rw, data)
 }
 
 func main() {
