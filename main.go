@@ -5,20 +5,21 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+
+	"github.com/Nhahan/blockchain/blockchain"
 )
 
 const port string = ":4000"
 
 type homeData struct {
 	PageTitle string
+	Blocks    []*blockchain.Block
 }
 
 func home(rw http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("templates/home.html")
-	if err != nil {
-		log.Fatal(err)
-	}
-	data := homeData{"Home"}
+	tmpl := template.Must(template.ParseFiles("templates/home.html"))
+
+	data := homeData{"Home", blockchain.GetBlockchain().AllBlocks()}
 	tmpl.Execute(rw, data)
 }
 
