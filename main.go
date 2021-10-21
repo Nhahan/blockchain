@@ -2,19 +2,13 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/Nhahan/blockchain/blockchain"
+	"log"
+	"net/http"
 )
 
-func main() {
-	chain := blockchain.GetBlockchain()
-	chain.AddBlock("Second Block")
-	chain.AddBlock("Third Block")
-	chain.AddBlock("Fourth Block")
+const port string = ":4000"
 
-	for _, block := range chain.AllBlocks() {
-		fmt.Printf("Data: %s\n", block.Data)
-		fmt.Printf("Hash: %s\n", block.Hash)
-		fmt.Printf("PrevHash: %s\n", block.PrevHash)
-	}
+func main() {
+	fmt.Printf("Listening on http://localhost%s\n", port)
+	log.Fatal(http.ListenAndServe(port, nil)) // if there is an error, it will return it.
 }
