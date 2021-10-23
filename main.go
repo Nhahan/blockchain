@@ -29,6 +29,17 @@ func home(rw http.ResponseWriter, r *http.Request) {
 
 func add(rw http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(rw, "add", nil)
+
+	switch r.Method {
+	case "GET":
+		templates.ExecuteTemplate(rw, "add", nil)
+	case "POST":
+		r.ParseForm()
+		data := r.Form.Get("blockData")
+		blockchain.GetBlockchain().AddBlock(data)
+
+		http.Redirect(rw, r, "/", http.StatusPermanentRedirect)
+	}
 }
 
 func main() {
