@@ -16,6 +16,10 @@ type URLDescription struct {
 	Payload     string `json:"payload,omitempty"`
 }
 
+func (u URLDescription) String() string {
+	return "Hello"
+}
+
 func documentation(rw http.ResponseWriter, r *http.Request) {
 	data := []URLDescription{
 		{
