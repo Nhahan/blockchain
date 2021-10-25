@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/Nhahan/blockchain/blockchain"
 )
 
 const port string = ":4000"
@@ -21,6 +23,10 @@ type URLDescription struct {
 	Method      string `json:"method"`
 	Description string `json:"description"`
 	Payload     string `json:"payload,omitempty"`
+}
+
+type AddBlockBody struct {
+	Message string
 }
 
 func documentation(rw http.ResponseWriter, r *http.Request) {
@@ -41,8 +47,19 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(rw).Encode(data)
 }
 
+func blocks(rw http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "GET":
+		json.NewEncoder(rw).Encode(blockchain.GetBlockchain().AllBlocks())
+	case "POST":
+		var addBlockBody AddBlockBody
+		json.NewDecoder(r.Body).Decode(&addBlockBody)
+	}
+}
+
 func main() {
 	http.HandleFunc("/", documentation)
+	http.HandleFunc("/blocks", blocks)
 	fmt.Printf("Listening on http://localhost%s", port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
