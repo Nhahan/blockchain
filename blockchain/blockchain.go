@@ -25,6 +25,10 @@ func (b *block) calculateHash() {
 	b.hash = fmt.Sprintf("%x", hash)
 }
 
+func (b *blockchain) AddBlock(data string) {
+	b.blocks = append(b.blocks, createBlock("Genesis Block"))
+}
+
 // Function
 func getLastHash() string {
 	totalBlocks := len(GetBlockchain().blocks)
@@ -44,7 +48,7 @@ func GetBlockchain() *blockchain {
 	if b == nil {
 		once.Do(func() {
 			b = &blockchain{}
-			b.blocks = append(b.blocks, createBlock("Genesis Block"))
+			b.AddBlock("Genesis Block")
 		})
 	}
 	return b
