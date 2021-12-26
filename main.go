@@ -22,7 +22,6 @@ type homeData struct {
 }
 
 func home(rw http.ResponseWriter, r *http.Request) {
-	// Must is the function that if there's an error returns error, otherwise returns value
 	data := homeData{"Home", blockchain.GetBlockchain().AllBlocks()}
 	templates.ExecuteTemplate(rw, "home", data)
 }
