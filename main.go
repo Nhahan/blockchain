@@ -10,7 +10,7 @@ import (
 const port string = ":4000"
 
 type homeData struct {
-	pageTitle string
+	PageTitle string
 }
 
 func home(rw http.ResponseWriter, r *http.Request) {
