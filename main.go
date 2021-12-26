@@ -2,15 +2,12 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/Nhahan/blockchain/blockchain"
+	"net/http"
 )
 
+const port string = ":4000"
+
 func main() {
-	chain := blockchain.GetBlockchain()
-	chain.AddBlock("Second Block")
-	chain.AddBlock("Third Block")
-	for _, block := range chain.AllBlocks() {
-		fmt.Println(block.Data)
-	}
+	fmt.Printf("Listening on http://localhost%s\n", port)
+	http.ListenAndServe(port, nil)
 }
