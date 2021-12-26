@@ -9,12 +9,17 @@ import (
 
 const port string = ":4000"
 
+type homeData struct {
+	pageTitle string
+}
+
 func home(rw http.ResponseWriter, r *http.Request) {
 	newTemplate, err := template.ParseFiles("templates/home.html")
 	if err != nil {
 		log.Fatal(err)
 	}
-	newTemplate.Execute(rw)
+	data := homeData{"Home"}
+	newTemplate.Execute(rw, data)
 }
 
 func main() {
