@@ -14,7 +14,7 @@ func home(rw http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	newTemplate.Execute()
+	newTemplate.Execute(rw)
 }
 
 func main() {
