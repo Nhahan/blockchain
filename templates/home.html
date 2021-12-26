@@ -8,5 +8,6 @@
     </head>
     <body>
         <h1>{{.PageTitle}}</h1>
+        {{range .Blocks}} {{.Data}} {{end}}
     </body>
 </html>
