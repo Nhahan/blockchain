@@ -17,10 +17,8 @@ type homeData struct {
 }
 
 func home(rw http.ResponseWriter, r *http.Request) {
-	newTemplate, err := template.ParseFiles("templates/home.html")
-	if err != nil {
-		log.Fatal(err)
-	}
+	// Must is the function that if there's an error returns error, otherwise returns value
+	newTemplate := template.Must(template.ParseFiles("templates/home.html"))
 	data := homeData{"Home", blockchain.GetBlockchain().AllBlocks()}
 	newTemplate.Execute(rw, data)
 }
