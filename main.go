@@ -5,12 +5,15 @@ import (
 	"log"
 	"net/http"
 	"text/template"
+
+	"github.com/Nhahan/blockchain/blockchain"
 )
 
 const port string = ":4000"
 
 type homeData struct {
 	PageTitle string
+	Blocks    []*blockchain.Block
 }
 
 func home(rw http.ResponseWriter, r *http.Request) {
@@ -18,7 +21,7 @@ func home(rw http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	data := homeData{"Home"}
+	data := homeData{"Home", blockchain.GetBlockchain().AllBlocks()}
 	newTemplate.Execute(rw, data)
 }
 
