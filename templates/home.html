@@ -1,6 +1,11 @@
+{{define "home"}}
 <!DOCTYPE html>
 <html lang="en">
+    {{template "head"}}
     <body>
-        <main></main>
+        {{template "header"}}
+        <main>{{template "block"}}</main>
+        {{template "footer"}}
     </body>
 </html>
+{{end}}
