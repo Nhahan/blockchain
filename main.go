@@ -26,7 +26,7 @@ func home(rw http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(rw, "home", data)
 }
 
-func add( http.ResponseWriter, r *http.Request) {
+func add(rw http.ResponseWriter, r *http.Request) {
 	templates.ExecuteTemplate(rw, "add", nil)
 }
 
