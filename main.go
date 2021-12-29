@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -21,6 +22,10 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 			Method:      "GET",
 			Description: "See Documentation",
 		},
+	}
+	b, err := json.Marshal(data)
+	if err != nil {
+		log.Panic(err)
 	}
 }
 
