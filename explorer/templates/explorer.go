@@ -9,12 +9,12 @@ import (
 	"github.com/Nhahan/blockchain/blockchain"
 )
 
-var templates *template.Template
-
 const (
 	port        string = ":4000"
 	templateDir string = "explorer/templates/"
 )
+
+var templates *template.Template
 
 type homeData struct {
 	PageTitle string
@@ -39,13 +39,10 @@ func add(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Start() {
-	templates = template.Must(template.ParseGlob(templateDir + "pages/*.html"))
-	templates = template.Must(templates.ParseGlob(templateDir + "partials/*.html"))
+	templates = template.Must(template.ParseGlob(templateDir + "pages/*.gohtml"))
+	templates = template.Must(templates.ParseGlob(templateDir + "partials/*.gohtml"))
 	http.HandleFunc("/", home)
 	http.HandleFunc("/add", add)
 	fmt.Printf("Listening on http://localhost%s\n", port)
-	err := http.ListenAndServe(port, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
+	log.Fatal(http.ListenAndServe(port, nil))
 }
