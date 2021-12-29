@@ -1,7 +1,19 @@
 package main
 
-import "github.com/Nhahan/blockchain/deprecated/explorer"
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
+
+const port string = ":4000"
+
+func documentation(rw http.ResponseWriter, r *http.Request) {
+
+}
 
 func main() {
-	explorer.Start()
+	http.HandleFunc("/", documentation)
+	fmt.Printf("Listening on http://localhost%s", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
