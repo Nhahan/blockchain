@@ -10,9 +10,9 @@ import (
 const port string = ":4000"
 
 type URLDescription struct {
-	URL         string
-	Method      string
-	Description string
+	URL         string `json:"url"`
+	Method      string `json:"method"`
+	Description string `json:"description"`
 }
 
 func documentation(rw http.ResponseWriter, r *http.Request) {
