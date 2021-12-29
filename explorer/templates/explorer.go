@@ -13,7 +13,7 @@ var templates *template.Template
 
 const (
 	port        string = ":4000"
-	templateDir string = "templates/"
+	templateDir string = "explorer/templates/"
 )
 
 type homeData struct {
