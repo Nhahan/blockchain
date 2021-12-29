@@ -15,7 +15,13 @@ type URLDescription struct {
 }
 
 func documentation(rw http.ResponseWriter, r *http.Request) {
-
+	data := []URLDescription{
+		{
+			URL:         "/",
+			Method:      "GET",
+			Description: "See Documentation",
+		},
+	}
 }
 
 func main() {
