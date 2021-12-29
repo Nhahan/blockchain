@@ -27,11 +27,11 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 	}
 	b, err := json.Marshal(data)
 	utils.HandleErr(err)
-	fmt.Print(b)
+	fmt.Printf("%s", b)
 }
 
 func main() {
 	http.HandleFunc("/", documentation)
-	fmt.Printf("Listening on http://localhost%s", port)
+	fmt.Printf("Listening on http://localhost%s\n", port)
 	log.Fatal(http.ListenAndServe(port, nil))
 }
