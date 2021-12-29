@@ -12,7 +12,7 @@ const port string = ":4000"
 type URLDescription struct {
 	URL         string `json:"url"`
 	Method      string `json:"method"`
-	Description string `json:"description"`
+	Description string `json:"description"` // if add ~,omitempty"` this data could be not shown
 }
 
 func documentation(rw http.ResponseWriter, r *http.Request) {
