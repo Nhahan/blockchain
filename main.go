@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/Nhahan/blockchain/utils"
 )
 
 const port string = ":4000"
@@ -26,9 +24,7 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 		},
 	}
 	rw.Header().Add("Content-Type", "application/json")
-	b, err := json.Marshal(data)
-	utils.HandleErr(err)
-	fmt.Fprintf(rw, "%s", b)
+	json.NewEncoder(rw).Encode(data)
 }
 
 func main() {
