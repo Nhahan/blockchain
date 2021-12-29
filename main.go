@@ -27,7 +27,7 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 	}
 	b, err := json.Marshal(data)
 	utils.HandleErr(err)
-	fmt.Printf("%s", b)
+	fmt.Fprintf(rw, "%s", b)
 }
 
 func main() {
