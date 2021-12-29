@@ -25,6 +25,7 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 			Description: "See Documentation",
 		},
 	}
+	rw.Header().Add("Content-Type", "application/json")
 	b, err := json.Marshal(data)
 	utils.HandleErr(err)
 	fmt.Fprintf(rw, "%s", b)
