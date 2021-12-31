@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/Nhahan/blockchain/blockchain"
+	"github.com/Nhahan/blockchain/utils"
 )
 
 const port string = ":4000"
@@ -54,8 +55,9 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(rw).Encode(blockchain.GetBlockchain().AllBlocks())
 	case "POST":
 		var addBlockBody AddBlockBody
-		json.NewDecoder(r.Body).Decode(&addBlockBody) // send a real thing(use pointer)
-		fmt.Println(addBlockBody)
+		utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody)) // send a real thing(use pointer)
+		blockchain.GetBlockchain().AddBlock(addBlockBody.Message)
+		rw.WriteHeader(http.StatusCreated)
 	}
 }
 
