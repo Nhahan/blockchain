@@ -25,6 +25,10 @@ type URLDescription struct {
 	Payload     string `json:"payload,omitempty"`
 }
 
+type AddBlockBody struct {
+	Message string
+}
+
 func documentation(rw http.ResponseWriter, r *http.Request) {
 	data := []URLDescription{
 		{
@@ -49,7 +53,9 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 		rw.Header().Add("Content-Type", "application/json")
 		json.NewEncoder(rw).Encode(blockchain.GetBlockchain().AllBlocks())
 	case "POST":
-		// TODO
+		var addBlockBody AddBlockBody
+		json.NewDecoder(r.Body).Decode(&addBlockBody) // send a real thing(use pointer)
+		fmt.Println(addBlockBody)
 	}
 }
 
