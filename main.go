@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Nhahan/blockchain//explorer"
+	explorer "github.com/Nhahan/blockchain/explorer/templates"
 	"github.com/Nhahan/blockchain/rest"
 )
 
