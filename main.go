@@ -3,5 +3,5 @@ package main
 import "github.com/Nhahan/blockchain/rest"
 
 func main() {
-	rest.Start()
+	rest.Start(4000)
 }
