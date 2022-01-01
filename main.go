@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/Nhahan/blockchain/blockchain"
@@ -67,8 +66,4 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", documentation)
-	http.HandleFunc("/blocks", blocks)
-	fmt.Printf("Listening on http://localhost%s", port)
-	log.Fatal(http.ListenAndServe(port, nil))
 }
