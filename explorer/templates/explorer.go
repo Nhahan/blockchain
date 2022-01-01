@@ -38,10 +38,11 @@ func add(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Start(port int) {
+	handler := http.NewServeMux()
 	templates = template.Must(template.ParseGlob(templateDir + "pages/*.html"))
 	templates = template.Must(templates.ParseGlob(templateDir + "partials/*.html"))
-	http.HandleFunc("/", home)
-	http.HandleFunc("/add", add)
+	handler.HandleFunc("/", home)
+	handler.HandleFunc("/add", add)
 	fmt.Printf("Listening on http://localhost:%d\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), handler))
 }
