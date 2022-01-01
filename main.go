@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Nhahan/blockchain/deprecated/explorer"
+	"github.com/Nhahan/blockchain//explorer"
 	"github.com/Nhahan/blockchain/rest"
 )
 

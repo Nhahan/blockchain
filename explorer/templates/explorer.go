@@ -42,6 +42,6 @@ func Start(port int) {
 	templates = template.Must(templates.ParseGlob(templateDir + "partials/*.gohtml"))
 	http.HandleFunc("/", home)
 	http.HandleFunc("/add", add)
-	fmt.Printf("Listening on http://localhost%s\n", port)
+	fmt.Printf("Listening on http://localhost%d\n", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
