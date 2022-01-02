@@ -6,9 +6,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Nhahan/blockchain/blockchain"
-	"github.com/Nhahan/blockchain/utils"
 	"github.com/gorilla/mux"
+	"github.com/nomadcoders/nomadcoin/blockchain"
+	"github.com/nomadcoders/nomadcoin/utils"
 )
 
 var port string
@@ -40,6 +40,11 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 		},
 		{
 			URL:         url("/blocks"),
+			Method:      "GET",
+			Description: "See All Blocks",
+		},
+		{
+			URL:         url("/blocks"),
 			Method:      "POST",
 			Description: "Add A Block",
 			Payload:     "data:string",
@@ -61,7 +66,7 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(rw).Encode(blockchain.GetBlockchain().AllBlocks())
 	case "POST":
 		var addBlockBody addBlockBody
-		utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody)) // send a real thing(use pointer)
+		utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody))
 		blockchain.GetBlockchain().AddBlock(addBlockBody.Message)
 		rw.WriteHeader(http.StatusCreated)
 	}
@@ -77,7 +82,7 @@ func Start(aPort int) {
 	port = fmt.Sprintf(":%d", aPort)
 	router.HandleFunc("/", documentation).Methods("GET")
 	router.HandleFunc("/blocks", blocks).Methods("GET", "POST")
-	router.HandleFunc("/blocks/{id:[0-9]+", block).Methods("GET")
+	router.HandleFunc("/blocks/{id:[0-9]+}", block).Methods("GET")
 	fmt.Printf("Listening on http://localhost%s\n", port)
 	log.Fatal(http.ListenAndServe(port, router))
 }
