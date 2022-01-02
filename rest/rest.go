@@ -73,8 +73,8 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 }
 
 func block(rw http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	fmt.Println(vars)
+	vars := mux.Vars(r) // map[id:1]
+	id := vars["id"]
 }
 
 func Start(aPort int) {
