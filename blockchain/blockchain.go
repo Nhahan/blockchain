@@ -58,3 +58,7 @@ func GetBlockchain() *blockchain {
 	}
 	return b
 }
+
+func (b *blockchain) GetBlock(height int) *Block {
+	return b.blocks[height]
+}
