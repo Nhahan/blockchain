@@ -10,6 +10,7 @@ type Block struct {
 	Data     string
 	Hash     string
 	PrevHash string
+	Height   int
 }
 
 type blockchain struct {
@@ -43,7 +44,7 @@ func getLastHash() string {
 }
 
 func createBlock(data string) *Block {
-	newBlock := Block{data, "", getLastHash()}
+	newBlock := Block{data, "", getLastHash(), len(GetBlockchain().blocks + 1)}
 	newBlock.calculateHash()
 	return &newBlock
 }
