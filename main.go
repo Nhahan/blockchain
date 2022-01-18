@@ -1,10 +1,15 @@
 package main
 
 import (
-	"github.com/Nhahan/blockchain/rest"
+	"fmt"
+	"os"
 )
 
 func main() {
-	// go explorer.Start(3000)
-	rest.Start(4000)
+	// rest.Start(4000)
+	if len(os.Args) < 2 {
+		fmt.Printf("Welcome. Please use the following commands:\n")
+		fmt.Printf("explorer:   Start the HTML Explorer\n")
+		fmt.Printf("rest: 		Start the REST API\n")
+	}
 }
