@@ -27,7 +27,10 @@ func main() {
 		usage()
 	}
 
-	fmt.Println(*portFlag)
+	if rest.Parsed() {
+		fmt.Println(portFlag)
+		fmt.Println("Start Server")
+	}
 }
 
 func usage() {
