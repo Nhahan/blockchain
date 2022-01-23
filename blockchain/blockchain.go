@@ -14,10 +14,6 @@ type Block struct {
 	Height   int    `json"height"`
 }
 
-type blockchain struct {
-	blocks []*Block
-}
-
 var b *blockchain
 var once sync.Once
 
