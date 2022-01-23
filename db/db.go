@@ -1,6 +1,8 @@
 package db
 
 import (
+	"fmt"
+
 	"github.com/Nhahan/blockchain/utils"
 	bolt "go.etcd.io/bbolt"
 )
@@ -30,6 +32,7 @@ func DB() *bolt.DB {
 }
 
 func SaveBlock(hash string, data []byte) {
+	fmt.Printf("Saving Block %s\nData: %b", hash, data)
 	err := DB().Update(func(t *bolt.Tx) error {
 		bucket := t.Bucket([]byte(blocksBucket))
 		err := bucket.Put([]byte(hash), data)
