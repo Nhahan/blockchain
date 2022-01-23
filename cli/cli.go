@@ -30,7 +30,7 @@ func Start() {
 }
 
 func usage() {
-	fmt.Printf("")
+	fmt.Printf("\n")
 	fmt.Printf("Please use the following commands:\n")
 	fmt.Printf("-port: Set the PORT of the server\n")
 	fmt.Printf("-mode: Choose between 'html' and 'rest'\n")
