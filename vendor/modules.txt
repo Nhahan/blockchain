@@ -1,8 +1,16 @@
 # github.com/boltdb/bolt v1.3.1
 ## explicit
+# github.com/br0xen/boltbrowser v0.0.0-20210531150353-7f10a81cece0
+## explicit; go 1.13
+# github.com/br0xen/termbox-util v0.0.0-20170904143325-de1d4c83380e
+## explicit
 # github.com/gorilla/mux v1.8.0
 ## explicit; go 1.12
 github.com/gorilla/mux
+# github.com/mattn/go-runewidth v0.0.4
+## explicit
+# github.com/nsf/termbox-go v0.0.0-20180819125858-b66b20ab708e
+## explicit
 # go.etcd.io/bbolt v1.3.6
 ## explicit; go 1.12
 go.etcd.io/bbolt
