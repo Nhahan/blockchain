@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"github.com/Nhahan/blockchain/db"
+	"github.com/Nhahan/blockchain/utils"
 )
 
 type blockchain struct {
@@ -15,7 +16,7 @@ var b *blockchain
 var once sync.Once
 
 func (b *blockchain) persist() {
-	db.SaveBlockchain()
+	db.SaveBlockchain(utils.ToBytes(b))
 }
 
 func (b *blockchain) AddBlock(data string) {
