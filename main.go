@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-	blockchain.Blockchain()
+	blockchain.Blockchain().AddBlock("1")
+	blockchain.Blockchain().AddBlock("2")
 }
