@@ -15,6 +15,8 @@ type blockchain struct {
 var b *blockchain
 var once sync.Once
 
+func (b *blockchain) fromBytes(data []byte) {}
+
 func (b *blockchain) persist() {
 	db.SaveBlockchain(utils.ToBytes(b))
 }
@@ -30,7 +32,12 @@ func Blockchain() *blockchain {
 	if b == nil {
 		once.Do(func() {
 			b = &blockchain{"", 0}
-			b.AddBlock("Genesis")
+			checkpoint := db.Checkpoint()
+			if checkpoint == nil {
+				b.AddBlock("Genesis")
+			} else {
+				b.fromBytes(checkpoint)
+			}
 		})
 	}
 	return b
