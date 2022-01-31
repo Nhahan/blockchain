@@ -3,6 +3,7 @@ package blockchain
 import (
 	"bytes"
 	"encoding/gob"
+	"fmt"
 	"sync"
 
 	"github.com/Nhahan/blockchain/db"
@@ -37,13 +38,16 @@ func Blockchain() *blockchain {
 	if b == nil {
 		once.Do(func() {
 			b = &blockchain{"", 0}
+			fmt.Printf("NewestHash: %s\nHeight:%d", b.NewestHash, b.Height)
 			checkpoint := db.Checkpoint()
 			if checkpoint == nil {
 				b.AddBlock("Genesis")
 			} else {
+				fmt.Println("restore")
 				b.restore(checkpoint)
 			}
 		})
 	}
+	fmt.Printf("NewestHash: %s\nHeight:%d", b.NewestHash, b.Height)
 	return b
 }
