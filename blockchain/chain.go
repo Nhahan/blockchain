@@ -1,6 +1,8 @@
 package blockchain
 
 import (
+	"bytes"
+	"encoding/gob"
 	"sync"
 
 	"github.com/Nhahan/blockchain/db"
@@ -15,7 +17,10 @@ type blockchain struct {
 var b *blockchain
 var once sync.Once
 
-func (b *blockchain) fromBytes(data []byte) {}
+func (b *blockchain) fromBytes(data []byte) {
+	decoder := gob.NewDecoder(bytes.NewReader(data))
+	decoder.Decode(b)
+}
 
 func (b *blockchain) persist() {
 	db.SaveBlockchain(utils.ToBytes(b))
