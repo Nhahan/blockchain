@@ -17,7 +17,7 @@ type blockchain struct {
 var b *blockchain
 var once sync.Once
 
-func (b *blockchain) fromBytes(data []byte) {
+func (b *blockchain) restore(data []byte) {
 	decoder := gob.NewDecoder(bytes.NewReader(data))
 	decoder.Decode(b)
 }
@@ -41,7 +41,7 @@ func Blockchain() *blockchain {
 			if checkpoint == nil {
 				b.AddBlock("Genesis")
 			} else {
-				b.fromBytes(checkpoint)
+				b.restore(checkpoint)
 			}
 		})
 	}
