@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/Nhahan/blockchain/blockchain"
+	"github.com/Nhahan/blockchain/cli"
+	"github.com/Nhahan/blockchain/db"
 )
 
 func main() {
-	blockchain.Blockchain().AddBlock("1")
-	blockchain.Blockchain().AddBlock("2")
+	defer db.Close()
+	cli.Start()
 }
