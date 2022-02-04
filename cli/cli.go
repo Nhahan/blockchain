@@ -4,10 +4,19 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 
 	explorer "github.com/Nhahan/blockchain/explorer/templates"
 	"github.com/Nhahan/blockchain/rest"
 )
+
+func usage() {
+	fmt.Printf("\n")
+	fmt.Printf("Please use the following commands:\n")
+	fmt.Printf("-port: Set the PORT of the server\n")
+	fmt.Printf("-mode: Choose between 'html' and 'rest'\n")
+	runtime.Goexit()
+}
 
 func Start() {
 	if len(os.Args) == 1 {
@@ -27,12 +36,4 @@ func Start() {
 	default:
 		usage()
 	}
-}
-
-func usage() {
-	fmt.Printf("\n")
-	fmt.Printf("Please use the following commands:\n")
-	fmt.Printf("-port: Set the PORT of the server\n")
-	fmt.Printf("-mode: Choose between 'html' and 'rest'\n")
-	os.Exit(0)
 }
