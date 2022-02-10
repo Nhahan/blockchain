@@ -17,7 +17,7 @@ type Block struct {
 	PrevHash   string `json:"prevHash,omitempty"`
 	Height     int    `json:"height"`
 	Difficulty int    `json:"difficulty"`
-	Nounce     int    `json:"nounce"`
+	Nonce     int    `json:"nonce"`
 }
 
 func (b *Block) persist() {
