@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	difficulty := 2
+	difficulty := 20
 	target := strings.Repeat("0", difficulty)
 	nonce := 1
 	for {
