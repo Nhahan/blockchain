@@ -9,6 +9,8 @@ import (
 	"github.com/Nhahan/blockchain/utils"
 )
 
+const difficulty int
+
 type Block struct {
 	Data       string `json:"data"`
 	Hash       string `json:"hash"`
