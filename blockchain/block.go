@@ -4,12 +4,13 @@ import (
 	"crypto/sha256"
 	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/Nhahan/blockchain/db"
 	"github.com/Nhahan/blockchain/utils"
 )
 
-const difficulty int
+const difficulty int = 2
 
 type Block struct {
 	Data       string `json:"data"`
@@ -17,7 +18,7 @@ type Block struct {
 	PrevHash   string `json:"prevHash,omitempty"`
 	Height     int    `json:"height"`
 	Difficulty int    `json:"difficulty"`
-	Nonce     int    `json:"nonce"`
+	Nonce      int    `json:"nonce"`
 }
 
 func (b *Block) persist() {
@@ -43,7 +44,7 @@ func FindBlock(hash string) (*Block, error) {
 func (b *Block) mine() {
 	target := strings.Repeat("0", b.Difficulty)
 	for {
-		hash := fmt.Sprintf("%x", sha256.Sum256([]bytefmt.Sprint(b)))
+		hash := fmt.Sprintf("%x", sha256.Sum256([]byte(fmt.Sprint(b))))
 		if strings.HasPrefix(hash, target) {
 			b.Hash = hash
 			break
@@ -55,13 +56,14 @@ func (b *Block) mine() {
 
 func createBlock(data string, prevHash string, height int) *Block {
 	block := &Block{
-		Data:     data,
-		Hash:     "",
-		PrevHash: prevHash,
-		Height:   height,
+		Data:       data,
+		Hash:       "",
+		PrevHash:   prevHash,
+		Height:     height,
 		Difficulty: difficulty,
-		Nonce: 0,
+		Nonce:      0,
 	}
+	block.mine()
 	block.persist()
 	return block
 }
