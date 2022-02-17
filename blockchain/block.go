@@ -3,6 +3,7 @@ package blockchain
 import (
 	"errors"
 	"strings"
+	"time"
 
 	"github.com/Nhahan/blockchain/db"
 	"github.com/Nhahan/blockchain/utils"
@@ -17,6 +18,7 @@ type Block struct {
 	Height     int    `json:"height"`
 	Difficulty int    `json:"difficulty"`
 	Nonce      int    `json:"nonce"`
+	Timestamp  int    `json:"timestamp"`
 }
 
 func (b *Block) persist() {
@@ -42,6 +44,7 @@ func FindBlock(hash string) (*Block, error) {
 func (b *Block) mine() {
 	target := strings.Repeat("0", b.Difficulty)
 	for {
+		b.Timestamp = int(time.Now().Unix())
 		hash := utils.Hash(b)
 		if strings.HasPrefix(hash, target) {
 			b.Hash = hash
