@@ -8,6 +8,12 @@ import (
 	"github.com/Nhahan/blockchain/utils"
 )
 
+const (
+	defaultDifficulty  int = 2
+	difficultyInterval int = 5
+	blockInterval      int = 2
+)
+
 type blockchain struct {
 	NewestHash        string `json:"newestHash"`
 	Height            int    `json:"height"`
@@ -47,11 +53,15 @@ func (b *blockchain) Blocks() []*Block {
 	return blocks
 }
 
+func (b *blockchain) recalculateDifficulty() int {
+
+}
+
 func (b *blockchain) difiiculty() int {
 	if b.Height == 0 {
 		return defaultDifficulty
 	} else if b.Height%difficultyInterval == 0 {
-		// recalcul
+		return b.recalculateDifficulty()
 	} else {
 		return b.CurrentDifficulty
 	}
