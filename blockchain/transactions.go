@@ -1,6 +1,10 @@
 package blockchain
 
-import "time"
+import (
+	"time"
+
+	"github.com/Nhahan/blockchain/utils"
+)
 
 const (
 	minerReaward int = 50
@@ -11,6 +15,10 @@ type Tx struct {
 	Timestamp int64
 	TxIns     []*TxIn
 	TxOuts    []*TxOut
+}
+
+func (t *Tx) getId() {
+	t.Id = utils.Hash(t)
 }
 
 type TxIn struct {
@@ -36,5 +44,6 @@ func makeCoinbaseTx(address string) *Tx {
 		TxIns:     txIns,
 		TxOuts:    txOuts,
 	}
+	tx.getId()
 	return &tx
 }
