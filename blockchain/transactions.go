@@ -11,10 +11,10 @@ const (
 )
 
 type Tx struct {
-	Id        string
-	Timestamp int64
-	TxIns     []*TxIn
-	TxOuts    []*TxOut
+	Id        string   `json:"id"`
+	Timestamp int      `json:"timestamp"`
+	TxIns     []*TxIn  `json:"txIns"`
+	TxOuts    []*TxOut `json:"txOuts"`
 }
 
 func (t *Tx) getId() {
@@ -40,7 +40,7 @@ func makeCoinbaseTx(address string) *Tx {
 	}
 	tx := Tx{
 		Id:        "",
-		Timestamp: time.Now().Unix(),
+		Timestamp: int(time.Now().Unix()),
 		TxIns:     txIns,
 		TxOuts:    txOuts,
 	}
