@@ -1,5 +1,11 @@
 package blockchain
 
+import "time"
+
+const (
+	minerReaward int = 50
+)
+
 type Tx struct {
 	Id        string
 	Timestamp int64
@@ -15,4 +21,20 @@ type TxIn struct {
 type TxOut struct {
 	Owner  string
 	Amount int
+}
+
+func makeCoinbaseTx(address string) *Tx {
+	txIns := []*TxIn{
+		{"COINBASE", minerReaward},
+	}
+	txOuts := []*TxOut{
+		{address, minerReaward},
+	}
+	tx := Tx{
+		Id:        "",
+		Timestamp: time.Now().Unix(),
+		TxIns:     txIns,
+		TxOuts:    txOuts,
+	}
+	return &tx
 }
