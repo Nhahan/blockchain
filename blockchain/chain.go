@@ -79,6 +79,17 @@ func (b *blockchain) difficulty() int {
 	}
 }
 
+func (b *blockchain) txOuts() []*TxOut {
+	var txOuts []*TxOut
+	blocks := b.Blocks()
+	for _, block := range blocks {
+		for _, tx := range block.Transactions {
+			txOuts = append(txOuts, tx.TxOuts...)
+		}
+	}
+	return txOuts
+}
+
 func Blockchain() *blockchain {
 	if b == nil {
 		once.Do(func() {
