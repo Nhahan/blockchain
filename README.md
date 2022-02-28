@@ -1,4 +1,4 @@
-## To Check Blocks on BboltDB
+### To Check Blocks on BboltDB
 ```
 Boltbrowser blockchain.db
 ```
