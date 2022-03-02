@@ -62,7 +62,7 @@ func createBlock(prevHash string, height int) *Block {
 		Height:       height,
 		Difficulty:   Blockchain().difficulty(),
 		Nonce:        0,
-		Transactions: []*Tx{makeCoinbaseTx("hello")},
+		Transactions: []*Tx{makeCoinbaseTx("transaction")},
 	}
 	block.mine()
 	block.persist()
