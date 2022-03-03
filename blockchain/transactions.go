@@ -53,3 +53,16 @@ func makeCoinbaseTx(address string) *Tx {
 	tx.getId()
 	return &tx
 }
+
+func makeTx(from, to string, amount int) (*Tx, error) {
+
+}
+
+func (m *mempool) AddTx(to string, amount int) error {
+	tx, err := makeTx("hello", to, amount)
+	if err != nil {
+		return err
+	}
+	m.Txs = append(m.Txs, tx)
+	return nil
+}
