@@ -1,6 +1,7 @@
 package blockchain
 
 import (
+	"errors"
 	"time"
 
 	"github.com/Nhahan/blockchain/utils"
@@ -55,7 +56,9 @@ func makeCoinbaseTx(address string) *Tx {
 }
 
 func makeTx(from, to string, amount int) (*Tx, error) {
-
+	if Blockchain().BalanceByAddress(from) < amount {
+		return nil, errors.New("not enough money")
+	}
 }
 
 func (m *mempool) AddTx(to string, amount int) error {
