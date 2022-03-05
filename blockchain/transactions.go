@@ -60,6 +60,7 @@ func makeTx(from, to string, amount int) (*Tx, error) {
 		return nil, errors.New("not enough money")
 	}
 	var txIns []*TxIn
+	var txOuts []*TxOut
 	total := 0
 	oldTxOuts := Blockchain().TxOutsByAddress(from)
 	for _, txOut := range oldTxOuts {
@@ -70,6 +71,13 @@ func makeTx(from, to string, amount int) (*Tx, error) {
 		txIns = append(txIns, txIn)
 		total += txIn.Amount
 	}
+	change := total - amount
+	if change != 0 {
+		changeTxOut := &TxOut{from, change}
+		txOuts = append(txOuts, changeTxOut)
+	}
+	txOut := &TxOut{to, amount}
+	txOuts = append(txOuts, txOut)
 }
 
 func (m *mempool) AddTx(to string, amount int) error {
