@@ -78,6 +78,14 @@ func makeTx(from, to string, amount int) (*Tx, error) {
 	}
 	txOut := &TxOut{to, amount}
 	txOuts = append(txOuts, txOut)
+	tx := &Tx{
+		Id:        "",
+		Timestamp: int(time.Now().Unix()),
+		TxIns:     txIns,
+		TxOuts:    txOuts,
+	}
+	tx.getId()
+	return tx, nil
 }
 
 func (m *mempool) AddTx(to string, amount int) error {
