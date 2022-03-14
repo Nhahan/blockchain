@@ -64,6 +64,7 @@ func createBlock(prevHash string, height int) *Block {
 		Nonce:      0,
 	}
 	block.mine()
+	block.Transactions = Mempool.TxToConfirm()
 	block.persist()
 	return block
 }
