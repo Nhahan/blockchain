@@ -29,8 +29,9 @@ func (t *Tx) getId() {
 }
 
 type TxIn struct {
-	Owner  string
-	Amount int
+	TxId  string
+	index int
+	Owner string
 }
 
 type TxOut struct {
