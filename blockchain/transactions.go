@@ -29,8 +29,8 @@ func (t *Tx) getId() {
 }
 
 type TxIn struct {
-	TxId  string
-	Index int
+	TxId  string `json:"txId"`
+	Index int    `json:"index"`
 	Owner string `json:"owner"`
 }
 
