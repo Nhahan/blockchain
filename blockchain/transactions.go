@@ -30,18 +30,18 @@ func (t *Tx) getId() {
 
 type TxIn struct {
 	TxId  string
-	index int
-	Owner string
+	Index int
+	Owner string `json:"owner"`
 }
 
 type TxOut struct {
-	Owner  string
-	Amount int
+	Owner  string `json:"owner"`
+	Amount int    `json:"amount"`
 }
 
 func makeCoinbaseTx(address string) *Tx {
 	txIns := []*TxIn{
-		{"COINBASE", minerReaward},
+		{"", -1, "COINBASE", minerReaward},
 	}
 	txOuts := []*TxOut{
 		{address, minerReaward},
