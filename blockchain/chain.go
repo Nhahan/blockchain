@@ -10,7 +10,7 @@ import (
 
 const (
 	defaultDifficulty  int = 2
-	difficultyInterval int = 5
+	difficultyInterval int = 4
 	blockInterval      int = 2
 	allowedRange       int = 2
 )
