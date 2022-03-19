@@ -79,6 +79,10 @@ func (b *blockchain) difficulty() int {
 	}
 }
 
+func (b *blockchain) UTxOutsByAddress(address string) []*TxOut {
+
+}
+
 func (b *blockchain) BalanceByAddress(address string) int {
 	txOuts := b.UTxOutsByAddress(address)
 	var amount int
